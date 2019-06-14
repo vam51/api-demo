@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: API Demo App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /api-demo/v1
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+  - application/octet-stream
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /phonenumbers:
+    x-swagger-router-controller: phone-number-controller
+    get:
+      description: Returns phone numbers from the database. You can filter the list by passing  an optional query parameter
+      operationId: getPhoneNumbers
+      parameters:
+        - name: customerId
+          in: query
+          description: Unique ID of the customer
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PhoneNumbersResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /phonenumbers/{phonenumber}/activate:
+    x-swagger-router-controller: phone-number-controller
+    post:
+      description: Activate a phone number
+      operationId: activatePhoneNumber
+      parameters:
+        - name: phonenumber
+          description: Phone number of the customer
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ActivateResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  PhoneNumbersResponse:
+    required:
+      - phonenumber
+      - customerid
+      - status
+    properties:
+      phonenumber:
+        type: string
+      customerid:
+        type: string
+      status:
+        type: string
+  ActivateResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - errorMessage
+    properties:
+      errorCode:
+        type: string
+      errorMessage:
+        type: string
