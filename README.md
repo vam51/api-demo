@@ -4,8 +4,6 @@ A simple project to demonstrate the exprerince in building NodeJs micro services
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 Project is built using swagger template. Please install swagger as a global module
@@ -39,6 +37,20 @@ swagger project start
 ```
 
 Use the swagger editor to run the manual verification testing.
+
+Below is the sample test data for verification.
+
+```
+[
+    {"phonenumber":"0400000011","customerid":"C1","status":"ACTIVE"},
+    {"phonenumber":"0400000012","customerid":"C1","status":"READY"},
+    {"phonenumber":"0400000013","customerid":"C1","status":"ACTIVE"},
+    {"phonenumber":"0400000021","customerid":"C2","status":"ACTIVE"},
+    {"phonenumber":"0400000022","customerid":"C2","status":"READY"},
+    {"phonenumber":"0400000031","customerid":"C3","status":"ACTIVE"},
+    {"phonenumber":"0400000041","customerid":"C4","status":"READY"},
+]
+```
 
 ### Run unit test cases and very coverage
 Go to project root directory
