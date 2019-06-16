@@ -52,7 +52,7 @@ Below is the sample test data for verification.
 ]
 ```
 
-### Run unit test cases and very coverage
+### Run unit test cases and verify coverage
 Go to project root directory
 Run below command to run unit test cases and verify coverage reports.
 ```
